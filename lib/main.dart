@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:bike_kollective/pages/login/LoginScreen.dart';
-import 'package:bike_kollective/pages/login/create_account_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,48 +10,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Bike Kollective',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: LoginScreen(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Bike Kollective'),
-        ),
-        body: Center(
-          child: Column(children: <Widget>[
-            ElevatedButton(
-              child: const Text('Create Account'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const CreateAccount()),
-                );
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Login'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
-              },
-            )
-          ]),
-        ));
-  }
-}
 
 //       theme: ThemeData(
 //         // This is the theme of your application.
