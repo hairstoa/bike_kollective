@@ -1,23 +1,75 @@
+// import 'package:flutter/material.dart';
+// import 'package:bike_kollective/pages/login/LoginScreen.dart';
+// import 'package:firebase_core/firebase_core.dart';
+
+// void main() => runApp(MyApp());
+
+// // this will need to be modified based on how we grow the app
+// // https://flutter.dev/docs/get-started/codelab
+
+// class MyApp extends StatelessWidget {
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Bike Kollective',
+//       debugShowCheckedModeBanner: false,
+//       home: LoginScreen(),
+//     );
+//   }
+// }
+
+import 'package:bike_kollective/pages/login/register.dart';
+import 'package:bike_kollective/utils/fire_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bike_kollective/pages/login/LoginScreen.dart';
+// screens
+import 'package:bike_kollective/pages/login/login_screen.dart';
+import 'package:bike_kollective/pages/login/splash.dart';
+// Import the provider plugin
+// Import the firebase plugins
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
-
-// this will need to be modified based on how we grow the app
-// https://flutter.dev/docs/get-started/codelab
+// 1
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bike Kollective',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          primaryColor: Colors.indigoAccent),
+      initialRoute: '/',
+      home: LoginPage(),
+      // routes: {
+      //   '/': (context) => Splash(),
+      //   //'/auth': (context) => FireAuth(),
+      //   '/login_screen': (context) => LoginPage(),
+      //   '/sign_up': (context) => const RegisterPage(),
+      //   //'/profile_page': (context) => ProfilePage(),
+      //},
     );
   }
 }
 
+// class AuthenticationWrapper extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     final firebaseuser = context.watch<User>();
+//     if (firebaseuser != null) {
+//       return ProfilePage();
+//     }
+//     return LoginPage();
+//   }
+// }
 
 //       theme: ThemeData(
 //         // This is the theme of your application.
