@@ -1,22 +1,82 @@
 import 'package:flutter/material.dart';
-import 'package:bike_kollective/pages/login/LoginScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+import 'package:bike_kollective/pages/login/LoginScreen.dart';
+import 'package:bike_kollective/pages/TestDBRead.dart';
+
+// void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(App());
+}
 
 // this will need to be modified based on how we grow the app
 // https://flutter.dev/docs/get-started/codelab
 
-class MyApp extends StatelessWidget {
+class App extends StatefulWidget {
   // This widget is the root of your application.
+
+  @override
+  _AppState createState() => _AppState();
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     title: 'Bike Kollective',
+  //     debugShowCheckedModeBanner: false,
+  //     home: LoginScreen(),
+  //   );
+  // }
+}
+
+class _AppState extends State<App> {
+  /// The future is part of the state of our widget. We should not call `initializeApp`
+  /// directly inside [build].
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        // if (snapshot.hasError) {
+        //   return SomethingWentWrong();
+        // }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MyAwesomeApp();
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return CircularProgressIndicator(
+          value: null,
+          semanticsLabel: 'Linear progress indicator',
+        );
+      },
+    );
+  }
+}
+
+class MyAwesomeApp extends StatelessWidget {
+  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bike Kollective',
       debugShowCheckedModeBanner: false,
       home: LoginScreen(),
+      // home: LoginScreen(),
     );
   }
 }
+
+
+
+
 
 
 //       theme: ThemeData(
