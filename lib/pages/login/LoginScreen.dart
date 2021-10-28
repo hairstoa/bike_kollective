@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bike_kollective/utils/style.dart';
+import 'package:bike_kollective/pages/login/create_account_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   //bool _rememberMe = false;
 
-// build the email text field 
+// build the email text field
 // style imported from style file #poet
   Widget _buildEmailTF() {
     return Column(
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.white,
               ),
               hintText: 'Enter your Email',
-              hintStyle:pwHintTextStyle,
+              hintStyle: pwHintTextStyle,
             ),
           ),
         ),
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-// widget builds the password field 
+// widget builds the password field
 // would like to extend to have the obscuretext so password enters as *
   Widget _buildPasswordTF() {
     return Column(
@@ -84,8 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-// option if you forgot password 
-// need to create routes for this 
+// option if you forgot password
+// need to create routes for this
   Widget _buildForgotPasswordBtn() {
     return Container(
       alignment: Alignment.centerRight,
@@ -127,8 +128,8 @@ class _LoginScreenState extends State<LoginScreen> {
   //   );
   // }
 
-// login button 
-// then route to main page of app 
+// login button
+// then route to main page of app
   Widget _buildLoginBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -155,27 +156,27 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-//  this would be the start of adding socials if we wanted 
+//  this would be the start of adding socials if we wanted
   // Widget _buildSignInWithText() {
   //   return Column(
-      // children: <Widget>[
-      //   Text(
-      //     '- OR -',
-      //     style: TextStyle(
-      //       color: Colors.white,
-      //       fontWeight: FontWeight.w400,
-      //     ),
-      //   ),
-      //   SizedBox(height: 20.0),
-      //   Text(
-      //     'Sign in with',
-      //     style: labelStyle,
-      //   ),
-      // ],
+  // children: <Widget>[
+  //   Text(
+  //     '- OR -',
+  //     style: TextStyle(
+  //       color: Colors.white,
+  //       fontWeight: FontWeight.w400,
+  //     ),
+  //   ),
+  //   SizedBox(height: 20.0),
+  //   Text(
+  //     'Sign in with',
+  //     style: labelStyle,
+  //   ),
+  // ],
   //   );
   // }
 
-// if we wanted to add socials 
+// if we wanted to add socials
   // Widget _buildSocialBtn(Function onTap, AssetImage logo) {
   //   return GestureDetector(
   //     //onTap: onTap,
@@ -225,7 +226,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignupBtn() {
     return GestureDetector(
-      onTap: () => print('Sign Up Button Pressed'),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CreateAccount()),
+        );
+      },
       child: RichText(
         text: TextSpan(
           children: [
