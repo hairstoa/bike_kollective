@@ -6,22 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UsersApiService {
   // final String documentId;
 
-  static Future<List<dynamic>> getUsers() async {
-    // CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-    return FirebaseFirestore.instance
-        .collection('users')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      return querySnapshot.docs;
-      // querySnapshot.docs.forEach((doc) {
-      //   print(doc["firstName"]);
-      // });
-    });
-  }
-
+  // Add a user
   static Future<void> addUser(body) async {
-    // body = {"firstName": "Dwight", "lastName": "Schrute"};
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
     // Future<void> addUser() {
@@ -36,30 +22,56 @@ class UsersApiService {
     // }
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  // get all Users
+  static Future<List<dynamic>> getUsers() async {
+    // CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-  //   return FutureBuilder<DocumentSnapshot>(
-  //     future: users.doc(documentId).get(),
-  //     builder:
-  //         (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-  //       if (snapshot.hasError) {
-  //         return Text("Something went wrong");
-  //       }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs;
+      // querySnapshot.docs.forEach((doc) {
+      //   print(doc["firstName"]);
+      // });
+    });
+  }
 
-  //       if (snapshot.hasData && !snapshot.data!.exists) {
-  //         return Text("Document does not exist");
-  //       }
+  // get one User by id
+  //  Future Map<String, dynamic> getUser(userId) async {
+  //   return FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(userId)
+  //       .get()
+  //       .then((DocumentSnapshot documentSnapshot) {
+  //         if (documentSnapshot.exists) {
+  //           print('Document data: ${documentSnapshot.data()}');
+  //           return documentSnapshot.data();
+  //         } else {
+  //           print('Document does not exist on the database');
+  //         }
 
-  //       if (snapshot.connectionState == ConnectionState.done) {
-  //         Map<String, dynamic> data =
-  //             snapshot.data!.data() as Map<String, dynamic>;
-  //         return Text("Full Name: ${data['firstName']} ${data['lastName']}");
-  //       }
-
-  //       return Text("loading");
-  //     },
-  //   );
+  //   });
   // }
+
+// Updates one user where userId is the document Id
+// updatedUser is an object that does not need to contain all the properties of a user
+  static Future<void> updateUser(userId, updatedUser) {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    return users
+        .doc(userId)
+        .update(updatedUser)
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  static Future<void> deleteUser(userId) {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    return users
+        .doc(userId)
+        .delete()
+        .then((value) => print("User Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
 }
