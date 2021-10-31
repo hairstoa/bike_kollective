@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bike_kollective/pages/login/LoginScreen.dart';
+import 'package:bike_kollective/pages/rent_bike/bike_map.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bike Kollective',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: Map(),
     );
   }
 }
