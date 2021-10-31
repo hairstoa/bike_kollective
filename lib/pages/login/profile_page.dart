@@ -19,6 +19,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool _isSendingVerification = false;
   bool _isSigningOut = false;
+  bool _isEmailVerified = false;
 
   late User _currentUser;
 
@@ -86,9 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: Icon(Icons.refresh),
                         onPressed: () async {
                           //User? user = await FireAuth.refreshUser(_currentUser);
-
                           User? user = FirebaseAuth.instance.currentUser;
-                          //user!.isEmailVerified;
                           if (user != null) {
                             setState(() {
                               _currentUser = user;
