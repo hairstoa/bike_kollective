@@ -1,14 +1,16 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:bike_kollective/pages/login/login_screen.dart';
-import 'package:flutter/material.dart';
-//import 'package:bike_kollective/authentication_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:bike_kollective/pages/login/login_screen.dart';
 import 'package:bike_kollective/utils/fire_auth.dart';
-import 'package:flutter/src/material/icons.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key, required this.user}) : super(key: key);
   final User user;
 
-  const ProfilePage({required this.user});
+  //const ProfilePage({required this.user});
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -30,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text('Profile'),
       ),
       body: Center(
         child: Column(
@@ -40,12 +42,12 @@ class _ProfilePageState extends State<ProfilePage> {
               'NAME: ${_currentUser.displayName}',
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            const SizedBox(height: 16.0),
+            SizedBox(height: 16.0),
             Text(
               'EMAIL: ${_currentUser.email}',
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            const SizedBox(height: 16.0),
+            SizedBox(height: 16.0),
             _currentUser.emailVerified
                 ? Text(
                     'Email verified',
@@ -61,9 +63,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         .bodyText1!
                         .copyWith(color: Colors.red),
                   ),
-            const SizedBox(height: 16.0),
+            SizedBox(height: 16.0),
             _isSendingVerification
-                ? const CircularProgressIndicator()
+                ? CircularProgressIndicator()
                 : Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -77,14 +79,16 @@ class _ProfilePageState extends State<ProfilePage> {
                             _isSendingVerification = false;
                           });
                         },
-                        child: const Text('Verify email'),
+                        child: Text('Verify email'),
                       ),
-                      const SizedBox(width: 8.0),
+                      SizedBox(width: 8.0),
                       IconButton(
-                        icon: const Icon(Icons.refresh),
+                        icon: Icon(Icons.refresh),
                         onPressed: () async {
-                          User? user = await FireAuth.refreshUser(_currentUser);
+                          //User? user = await FireAuth.refreshUser(_currentUser);
 
+                          User? user = FirebaseAuth.instance.currentUser;
+                          //user!.isEmailVerified;
                           if (user != null) {
                             setState(() {
                               _currentUser = user;
@@ -94,9 +98,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ],
                   ),
-            const SizedBox(height: 16.0),
+            SizedBox(height: 16.0),
             _isSigningOut
-                ? const CircularProgressIndicator()
+                ? CircularProgressIndicator()
                 : ElevatedButton(
                     onPressed: () async {
                       setState(() {
@@ -112,7 +116,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     },
-                    child: const Text('Sign out'),
+                    child: Text('Sign out'),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                       shape: RoundedRectangleBorder(

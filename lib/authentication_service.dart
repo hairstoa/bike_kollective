@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, await_only_futures
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
@@ -31,14 +33,14 @@ class AuthenticationService {
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        Text('No user found for that email.');
         ScaffoldMessenger.of(context).showSnackBar(
           AuthenticationService.customSnackBar(
             content: 'No user found for that email. Please create an account.',
           ),
         );
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided.');
+        Text('Wrong password provided.');
         ScaffoldMessenger.of(context).showSnackBar(
           AuthenticationService.customSnackBar(
             content: 'Wrong password provided.',
@@ -66,27 +68,25 @@ class AuthenticationService {
       );
 
       user = userCredential.user;
-      await user!.updateProfile(displayName: name);
+      await user!.updateDisplayName(name);
       await user.reload();
       user = auth.currentUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        Text('The password provided is too weak.');
         ScaffoldMessenger.of(context).showSnackBar(
           AuthenticationService.customSnackBar(
             content: 'The password provided is too weak.',
           ),
         );
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        Text('The account already exists for that email.');
         ScaffoldMessenger.of(context).showSnackBar(
           AuthenticationService.customSnackBar(
             content: 'The account already exists for that email.',
           ),
         );
       }
-    } catch (e) {
-      print(e);
     }
 
     return user;
