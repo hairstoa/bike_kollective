@@ -1,13 +1,11 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:bike_kollective/services/geolocator_service.dart';
+import 'package:flutter_config/flutter_config.dart';
 
-const MAPBOX_ACCESS_TOKEN =
-    'pk.eyJ1IjoiamFpbWVqdXN0byIsImEiOiJja29pY3F0ZW0xM2J1MnZwMWkwNWRvaXNnIn0.QSIh4jhy9wO_bKht1UC-iA';
 const MAPBOX_STYLE = 'mapbox.mapbox-streets-v8';
 const MARKER_COLOR = 0xFF64B5F6;
 
@@ -39,7 +37,7 @@ class _MapState extends State<Map> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text("Available Bikes")),
       body: StreamBuilder<Position>(
           stream: geoService.getCurrentLocation(),
           builder: (context, snapshot) {
@@ -47,14 +45,13 @@ class _MapState extends State<Map> with SingleTickerProviderStateMixin {
               options: MapOptions(
                 center:
                     LatLng(snapshot.data!.latitude, snapshot.data!.longitude),
-                zoom: 11.0,
+                zoom: 13.0,
               ),
               nonRotatedLayers: [
                 TileLayerOptions(
-                    urlTemplate:
-                        "https://api.mapbox.com/styles/v1/jaimejusto/ckoict2xb13oj19o2acu8f1vf/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
+                    urlTemplate: FlutterConfig.get("MAPBOX_URL"),
                     additionalOptions: {
-                      'accessToken': MAPBOX_ACCESS_TOKEN,
+                      'accessToken': FlutterConfig.get("MAPBOX_API_KEY"),
                       'id': MAPBOX_STYLE
                     }),
                 MarkerLayerOptions(markers: [
