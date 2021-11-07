@@ -36,11 +36,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^1.7.0
   cloud_firestore: ^2.5.3
+  
   geolocator: ^7.7.1
   provider: ^6.0.1
   flutter_map: ^0.14.0
   latlong2: ^0.8.1
   flutter_config: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,7 +56,11 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/bke-clipart-9.jpeg"
+  
 # The following section is specific to Flutter.
 flutter:
 
@@ -63,6 +69,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -93,3 +100,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
