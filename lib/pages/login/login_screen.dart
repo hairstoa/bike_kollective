@@ -652,7 +652,7 @@ class _LoginPageState extends State<LoginPage> {
                                               _isProcessing = true;
                                             });
 
-                                            User? user = await FireAuth
+                                            User? myUser = await FireAuth
                                                 .signInUsingEmailPassword(
                                               email: _emailTextController.text,
                                               password:
@@ -663,12 +663,13 @@ class _LoginPageState extends State<LoginPage> {
                                               _isProcessing = false;
                                             });
 
-                                            if (user != null) {
+                                            if (myUser != null) {
                                               Navigator.of(context)
                                                   .pushReplacement(
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ProfilePage(user: user),
+                                                      ProfilePage(
+                                                          user: myUser!),
                                                 ),
                                               );
                                             }
@@ -687,7 +688,7 @@ class _LoginPageState extends State<LoginPage> {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  RegistrationForm(),
+                                                  RegisterPage(),
                                             ),
                                           );
                                         },

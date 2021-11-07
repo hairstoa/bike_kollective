@@ -88,7 +88,7 @@ class FireAuth {
       );
 
       user = userCredential.user;
-      await user!.updateProfile(displayName: name);
+      await user!.updateDisplayName(name);
       await user.reload();
       user = auth.currentUser;
     } on FirebaseAuthException catch (e) {
@@ -129,10 +129,10 @@ class FireAuth {
     return user;
   }
 
-  static Future<User?> refreshUser(User user) async {
+  static Future<User?> refreshUser(User myUser) async {
     FirebaseAuth auth = FirebaseAuth.instance;
 
-    await user.reload();
+    await myUser.reload();
     User? refreshedUser = auth.currentUser;
 
     return refreshedUser;
