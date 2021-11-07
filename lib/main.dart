@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:bike_kollective/pages/login/LoginScreen.dart';
-import 'package:bike_kollective/pages/TestDBRead.dart';
+import 'package:bike_kollective/pages/login/DemoApi.dart';
 
 // void main() => runApp(MyApp());
 void main() {
@@ -68,8 +68,8 @@ class MyAwesomeApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bike Kollective',
       debugShowCheckedModeBanner: false,
+      // home: DemoApi(),
       home: LoginScreen(),
-      // home: LoginScreen(),
     );
   }
 }
