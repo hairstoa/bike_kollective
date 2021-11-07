@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:bike_kollective/pages/login/LoginScreen.dart';
+import 'package:bike_kollective/pages/rent_bike/bike_map.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterConfig.loadEnvVariables();
 
+  runApp(MyApp());
+}
 // this will need to be modified based on how we grow the app
 // https://flutter.dev/docs/get-started/codelab
 
@@ -13,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bike Kollective',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: Map(),
     );
   }
 }
