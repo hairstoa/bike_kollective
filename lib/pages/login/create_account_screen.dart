@@ -85,14 +85,12 @@
 //   }
 // }
 
-import 'package:bike_kollective/pages/login/profile_page.dart';
-import 'package:bike_kollective/utils/fire_auth.dart';
-import 'package:bike_kollective/utils/validator.dart';
 import 'package:flutter/material.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:bike_kollective/pages/login/profile_page.dart';
-import 'package:bike_kollective/utils/fire_auth.dart';
+// import 'package:bike_kollective/utils/fire_auth.dart';
+import 'package:bike_kollective/authentication_service.dart';
 import 'package:bike_kollective/utils/validator.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -200,13 +198,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
                                       if (_registerFormKey.currentState!
                                           .validate()) {
-                                        User? user = await FireAuth
+                                        User? user = await AuthenticationService
                                             .registerUsingEmailPassword(
-                                          name: _nameTextController.text,
-                                          email: _emailTextController.text,
-                                          password:
-                                              _passwordTextController.text,
-                                        );
+                                                name: _nameTextController.text,
+                                                email:
+                                                    _emailTextController.text,
+                                                password:
+                                                    _passwordTextController
+                                                        .text,
+                                                context: context);
 
                                         setState(() {
                                           _isProcessing = false;
