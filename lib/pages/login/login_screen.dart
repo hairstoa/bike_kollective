@@ -531,6 +531,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:bike_kollective/pages/login/create_account_screen.dart';
 import 'package:bike_kollective/utils/fire_auth.dart';
+// import 'package:bike_kollective/authentication_service.dart';
 import 'package:bike_kollective/utils/validator.dart';
 import 'package:bike_kollective/pages/login/profile_page.dart';
 
@@ -560,7 +561,8 @@ class _LoginPageState extends State<LoginPage> {
     if (user != null) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => LoginPage(),
+          // builder: (context) => LoginPage(),
+          builder: (context) => ProfilePage(user: user),
         ),
       );
     }
@@ -654,11 +656,11 @@ class _LoginPageState extends State<LoginPage> {
 
                                             User? myUser = await FireAuth
                                                 .signInUsingEmailPassword(
-                                              email: _emailTextController.text,
-                                              password:
-                                                  _passwordTextController.text,
-                                            );
-
+                                                    email: _emailTextController
+                                                        .text,
+                                                    password:
+                                                        _passwordTextController
+                                                            .text);
                                             setState(() {
                                               _isProcessing = false;
                                             });
