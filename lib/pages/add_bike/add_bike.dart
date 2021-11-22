@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bike_kollective/utils/db/api_bikes.dart';
+
 class AddBike extends StatefulWidget {
   AddBike({Key? key}) : super(key: key);
 
@@ -104,6 +106,26 @@ class _AddBikeState extends State<AddBike> {
 
   final _focusFrameSize = FocusNode();
   final _focusPasscode = FocusNode();
+
+  var newBike = {
+    'available': true,
+    'averageStars': 5,
+    'checkoutDate': null,
+    'condition': '',
+    'description': '',
+    'frameSize': '',
+    'frameUnit': '',
+    'image': '',
+    'location': null,
+    'lockCombination': '',
+    'maintenanceRequest': false,
+    'missing': false,
+    'ownerID': '',
+    'ratings': null,
+    'renterID': null,
+    'reportedIssues': [],
+    'type': ''
+  };
 
   List validators = [
     (value) {
@@ -254,6 +276,12 @@ class _AddBikeState extends State<AddBike> {
             print(_passcodeTextController.text);
             print(dropdownValueOne);
             print(dropdownValueTwo);
+            newBike['frameSize'] = _frameSizeTextController.text;
+            newBike['frameUnit'] = dropdownValueTwo;
+            newBike['type'] = dropdownValueOne;
+            newBike['lockcombination'] = _passcodeTextController.text;
+
+            BikesApiService.createBike(newBike);
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text('Processing Data')));
           }

@@ -7,7 +7,7 @@ class BikesApiService {
   // final String documentId;
 
   // Add a bike
-  static Future<void> addBike(body) async {
+  static Future<void> createBike(body) async {
     CollectionReference bikes = FirebaseFirestore.instance.collection('bikes');
 
     // Future<void> addBike() {
@@ -30,7 +30,7 @@ class BikesApiService {
           'ratings': null,
           'renterID': body['renterID'],
           'reportedIssues': body['reportedIssues'],
-          'tags': body['tags']
+          'type': body['type']
         })
         .then((value) => print("Bike Added"))
         .catchError((error) => print("Failed to add bike: $error"));
