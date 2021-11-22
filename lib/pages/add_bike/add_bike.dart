@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:bike_kollective/utils/db/api_bikes.dart';
 
 class AddBike extends StatefulWidget {
-  AddBike({Key? key}) : super(key: key);
+  const AddBike({Key? key, required this.user}) : super(key: key);
+  final User user;
 
   @override
   _AddBikeState createState() => _AddBikeState();
@@ -100,6 +101,14 @@ class _AddBikeState extends State<AddBike> {
   final _formKey = GlobalKey<FormState>();
   String dropdownValueOne = 'Road';
   String dropdownValueTwo = 'cm';
+
+  late User _currentUser;
+
+  @override
+  void initState() {
+    _currentUser = widget.user;
+    super.initState();
+  }
 
   final _frameSizeTextController = TextEditingController();
   final _passcodeTextController = TextEditingController();
@@ -280,6 +289,7 @@ class _AddBikeState extends State<AddBike> {
             newBike['frameUnit'] = dropdownValueTwo;
             newBike['type'] = dropdownValueOne;
             newBike['lockcombination'] = _passcodeTextController.text;
+            newBike['ownerID'] = _currentUser.uid;
 
             BikesApiService.createBike(newBike);
             ScaffoldMessenger.of(context)

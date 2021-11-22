@@ -107,7 +107,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AddBike()),
+                        MaterialPageRoute(
+                            builder: (context) => AddBike(user: _currentUser)),
                       );
                     },
                     child: Text('Add Bike'),
