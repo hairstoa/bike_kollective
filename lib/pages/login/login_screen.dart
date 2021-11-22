@@ -562,6 +562,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           // builder: (context) => LoginPage(),
+          // builder: (context) => ProfilePage(user: user),
           builder: (context) => ProfilePage(user: user),
         ),
       );

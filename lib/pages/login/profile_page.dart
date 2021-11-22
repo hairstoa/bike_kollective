@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+// import 'package:bike_kollective/pages/DemoApi.dart';
 import 'package:bike_kollective/pages/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bike_kollective/pages/login/login_screen.dart';
 import 'package:bike_kollective/utils/fire_auth.dart';
+import 'package:bike_kollective/pages/add_bike/add_bike.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key, required this.user}) : super(key: key);
@@ -98,6 +100,25 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
             SizedBox(height: 16.0),
+            // TEST
+            _isSigningOut
+                ? CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AddBike()),
+                      );
+                    },
+                    child: Text('Add Bike'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
+            // END TEST
             _isSigningOut
                 ? CircularProgressIndicator()
                 : ElevatedButton(
