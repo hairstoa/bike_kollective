@@ -671,8 +671,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   .pushReplacement(
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ProfilePage(
-                                                          user: myUser!),
+                                                      ProfilePage(user: myUser),
                                                 ),
                                               );
                                             }

@@ -2,9 +2,11 @@
 
 // import 'package:bike_kollective/pages/DemoApi.dart';
 import 'package:bike_kollective/pages/login/login_screen.dart';
+import 'package:bike_kollective/pages/rent_bike/confirmation_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bike_kollective/pages/login/login_screen.dart';
+//import 'package:image_picker_ui/image_picker_handler.dart';
+import 'package:bike_kollective/pages/rent_bike/bike_details.dart';
 import 'package:bike_kollective/utils/fire_auth.dart';
 import 'package:bike_kollective/pages/add_bike/add_bike.dart';
 
@@ -29,6 +31,21 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     _currentUser = widget.user;
     super.initState();
+//       _controller = new AnimationController(
+//       vsync: this,
+//       duration: const Duration(milliseconds: 500),
+//     );
+
+//     imagePicker=new ImagePickerHandler(this,_controller);
+//     imagePicker.init();
+
+//  }
+
+    @override
+    Widget build(BuildContext context) {
+      // TODO: implement build
+      throw UnimplementedError();
+    }
   }
 
   @override
@@ -145,6 +162,19 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
+            ElevatedButton(
+                child: Text('Bikes'),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => AddBike(user: _currentUser)));
+                }),
+            ElevatedButton(
+                child: Text('Confirmation Page'),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) =>
+                          ConfirmationPage(user: _currentUser)));
+                }),
           ],
         ),
       ),

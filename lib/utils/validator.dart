@@ -1,3 +1,5 @@
+/* password when it doesnt meet criteria loads endlessly 11/18 */
+
 class Validator {
   static String? validateName({required String name}) {
     if (name == null) {
