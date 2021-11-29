@@ -1,17 +1,59 @@
-import 'package:bike_kollective/pages/upload_image.dart';
+import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bike_kollective/pages/upload_image.dart';
 import 'package:bike_kollective/utils/db/api_bikes.dart';
+
+// class AddBike extends StatefulWidget {
+//   const AddBike({Key? key, required this.user}) : super(key: key);
+//   final User user;
+
+//@override
+//_AddBikeState createState() => _AddBikeState();
 
 class AddBike extends StatefulWidget {
   const AddBike({Key? key, required this.user}) : super(key: key);
   final User user;
 
+  //const ProfilePage({required this.user});
+
   @override
   _AddBikeState createState() => _AddBikeState();
 }
+
+//class _AddBikeState extends State<AddBike> {
+//   bool _isSendingVerification = false;
+//   bool _isSigningOut = false;
+//   bool _isEmailVerified = false;
+
+//   late User _currentUser;
+
+//   void initState() {
+//     _currentUser = FirebaseAuth.instance.currentUser!;
+//     super.initState();
+// //       _controller = new AnimationController(
+// //       vsync: this,
+// //       duration: const Duration(milliseconds: 500),
+// //     );
+
+// //     imagePicker=new ImagePickerHandler(this,_controller);
+// //     imagePicker.init();
+
+// //  }
+
+//     @override
+//     Widget build(BuildContext context) {
+// ignore: todo
+//       // TODO: implement build
+//       throw UnimplementedError();
+//     }
+//   }
+
+//return ConfirmationPage(user: _currentUser);
+//
 
 // class _AddBikeState extends State<AddBike> {
 //   final _formKey = GlobalKey<FormState>();
@@ -300,6 +342,9 @@ class _AddBikeState extends State<AddBike> {
     );
   }
 }
+
+  
+  
 
   // List formatters = [
   //   FilteringTextInputFormatter.digitsOnly,
