@@ -291,7 +291,8 @@ class _AddBikeState extends State<AddBike> {
                 .showSnackBar(SnackBar(content: Text('Processing Data')));
             var bikeId = BikesApiService.createBike(newBike).then((value) => {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => UploadImage(bike: value)))
+                      builder: (_) =>
+                          UploadImage(bike: value, user: _currentUser)))
                 });
           }
         },
