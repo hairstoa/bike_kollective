@@ -284,14 +284,15 @@ class _AddBikeState extends State<AddBike> {
             newBike['frameSize'] = _frameSizeTextController.text;
             newBike['frameUnit'] = dropdownValueTwo;
             newBike['type'] = dropdownValueOne;
-            newBike['lockcombination'] = _passcodeTextController.text;
+            newBike['lockCombination'] = _passcodeTextController.text;
             newBike['ownerID'] = _currentUser.uid;
 
-            BikesApiService.createBike(newBike);
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text('Processing Data')));
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => UploadImage()));
+            var bikeId = BikesApiService.createBike(newBike).then((value) => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => UploadImage(bike: value)))
+                });
           }
         },
       ),
