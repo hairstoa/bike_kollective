@@ -90,7 +90,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:bike_kollective/pages/login/profile_page.dart';
 // import 'package:bike_kollective/utils/fire_auth.dart';
-import 'package:bike_kollective/authentication_service.dart';
+import 'package:bike_kollective/helpers/authentication_service.dart';
 import 'package:bike_kollective/utils/validator.dart';
 
 class RegisterPage extends StatefulWidget {

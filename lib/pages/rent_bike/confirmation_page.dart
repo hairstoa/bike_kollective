@@ -4,7 +4,6 @@ import 'package:bike_kollective/utils/fire_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //import 'package:image_picker_ui/image_picker_handler.dart';
-import 'package:bike_kollective/pages/rent_bike/bike_details.dart';
 import 'package:bike_kollective/utils/fire_auth.dart';
 
 // class confirmRent extends StatefulWidget {
