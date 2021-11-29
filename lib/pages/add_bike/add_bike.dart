@@ -1,8 +1,10 @@
-import 'package:bike_kollective/pages/login/profile_page.dart';
+import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'package:bike_kollective/pages/upload_image.dart';
 import 'package:bike_kollective/utils/db/api_bikes.dart';
 
 // class AddBike extends StatefulWidget {
@@ -317,24 +319,23 @@ class _AddBikeState extends State<AddBike> {
             ],
           )),
       floatingActionButton: FloatingActionButton(
-        child: Text('Add Bike'),
+        child: Text('Next'),
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            // If the form is valid, display a snackbar. In the real world,
-            // you'd often call a server or save the information in a database.
-            print(_frameSizeTextController.text);
-            print(_passcodeTextController.text);
-            print(dropdownValueOne);
-            print(dropdownValueTwo);
+            // If the form is valid, display a snackbar.
             newBike['frameSize'] = _frameSizeTextController.text;
             newBike['frameUnit'] = dropdownValueTwo;
             newBike['type'] = dropdownValueOne;
-            newBike['lockcombination'] = _passcodeTextController.text;
+            newBike['lockCombination'] = _passcodeTextController.text;
             newBike['ownerID'] = _currentUser.uid;
 
-            BikesApiService.createBike(newBike);
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text('Processing Data')));
+            var bikeId = BikesApiService.createBike(newBike).then((value) => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) =>
+                          UploadImage(bike: value, user: _currentUser)))
+                });
           }
         },
       ),
