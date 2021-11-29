@@ -118,24 +118,24 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
             SizedBox(height: 16.0),
             // TEST
-            _isSigningOut
-                ? CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddBike(user: _currentUser)),
-                      );
-                    },
-                    child: Text('Add Bike'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                  ),
+            // _isSigningOut
+            //     ? CircularProgressIndicator()
+            //     : ElevatedButton(
+            //         onPressed: () {
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //                 builder: (context) => AddBike(user: _currentUser)),
+            //           );
+            //         },
+            //         child: Text('Add Bike'),
+            //         style: ElevatedButton.styleFrom(
+            //           primary: Colors.green,
+            //           shape: RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(30),
+            //           ),
+            //         ),
+            //       ),
             // END TEST
             _isSigningOut
                 ? CircularProgressIndicator()
@@ -162,12 +162,26 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
-            ElevatedButton(
-                child: Text('Bikes'),
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => AddBike(user: _currentUser)));
-                }),
+            // TEST
+            _isSigningOut
+                ? CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddBike(user: _currentUser)),
+                      );
+                    },
+                    child: Text('Add Bike'),
+                  ),
+            // END TEST
+            // ElevatedButton(
+            //     child: Text('Add Bike'),
+            //     onPressed: () {
+            //       Navigator.of(context).pushReplacement(MaterialPageRoute(
+            //           builder: (context) => AddBike(user: _currentUser)));
+            //     }),
             ElevatedButton(
                 child: Text('Confirmation Page'),
                 onPressed: () {
