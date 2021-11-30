@@ -1,7 +1,12 @@
+// ignore_for_file: prefer_collection_literals
+
+import 'package:bike_kollective/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
-import 'package:bike_kollective/pages/login/LoginScreen.dart';
-import 'package:bike_kollective/pages/rent_bike/bike_map.dart';
+
+import 'package:bike_kollective/models/cart_model.dart';
+import 'package:bike_kollective/models/catalog_model.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,15 +19,45 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  //@override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     title: 'Bike Kollective',
+  //     debugShowCheckedModeBanner: false,
+  //     home: LoginPage(),
+  //     //Map(),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bike Kollective',
-      debugShowCheckedModeBanner: false,
-      home: Map(),
-    );
+    // Using MultiProvider is convenient when providing multiple objects.
+    return MultiProvider(
+        providers: [
+          // In this sample app, CatalogModel never changes, so a simple Provider
+          // is sufficient.
+          Provider(create: (context) => CatalogModel()),
+          // CartModel is implemented as a ChangeNotifier, which calls for the use
+          // of ChangeNotifierProvider. Moreover, CartModel depends
+          // on CatalogModel, so a ProxyProvider is needed.
+          ChangeNotifierProxyProvider<CatalogModel, CartModel>(
+            create: (context) => CartModel(),
+            update: (context, catalog, cart) {
+              if (cart == null) throw ArgumentError.notNull('cart');
+              cart.catalog = catalog;
+              return cart;
+            },
+          ),
+        ],
+        child: MaterialApp(
+          title: 'Bike Kollective',
+          debugShowCheckedModeBanner: false,
+          home: LoginPage(),
+          //Map(),
+        ));
   }
 }
+  
 
 
 //       theme: ThemeData(
