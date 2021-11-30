@@ -1,14 +1,14 @@
-// Copyright 2019 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:bike_kollective/pages/login/login_screen.dart';
+import 'package:bike_kollective/pages/rent_bike/confirmation_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bike_kollective/models/cart_model.dart';
+import 'package:bike_kollective/pages/user_image.dart';
 
 class MyCart extends StatelessWidget {
-  const MyCart({Key? key}) : super(key: key);
+  MyCart({Key? key, required this.user}) : super(key: key);
+  User user;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +79,8 @@ class _CartList extends StatelessWidget {
 
 class _CartTotal extends StatelessWidget {
   @override
+  String? imageUrl;
+  late User _currentUser;
   Widget build(BuildContext context) {
     var hugeStyle =
         Theme.of(context).textTheme.headline1!.copyWith(fontSize: 48);
@@ -97,16 +99,15 @@ class _CartTotal extends StatelessWidget {
             // the rest of the widgets in this build method.
             Consumer<CartModel>(
                 builder: (context, cart, child) =>
-                    Text('\$${cart.totalPrice}', style: hugeStyle)),
+                    Text('\$${cart.items}', style: hugeStyle)),
             const SizedBox(width: 24),
-            TextButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Buying not supported yet.')));
-              },
-              style: TextButton.styleFrom(primary: Colors.white),
-              child: const Text('BUY'),
-            ),
+            ElevatedButton(
+                child: Text('Confirmation Page'),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) =>
+                          ConfirmationPage(user: _currentUser)));
+                }),
           ],
         ),
       ),
