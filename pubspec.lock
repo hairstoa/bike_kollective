@@ -141,7 +141,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-<<<<<<< Updated upstream
   firebase_storage:
     dependency: "direct main"
     description:
@@ -163,8 +162,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
-=======
->>>>>>> Stashed changes
   flutter:
     dependency: "direct main"
     description: flutter
