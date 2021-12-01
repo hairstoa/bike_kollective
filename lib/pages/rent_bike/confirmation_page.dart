@@ -1,10 +1,13 @@
+import 'package:bike_kollective/models/bike_model.dart';
 import 'package:bike_kollective/pages/login/login_screen.dart';
 import 'package:bike_kollective/pages/rent_bike/confirmation_page.dart';
 import 'package:bike_kollective/utils/fire_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //import 'package:image_picker_ui/image_picker_handler.dart';
 import 'package:bike_kollective/utils/fire_auth.dart';
+import 'package:bike_kollective/pages/rent_bike/cart.dart';
 
 // class confirmRent extends StatefulWidget {
 //   const confirmRent{Key? key, required this.user}) : super(key: key);
@@ -99,4 +102,47 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
         ));
     return ConfirmationPage(user: _currentUser);
   } //
+}
+
+// book bike - tracks the state of the bike to measure rental duration
+class BookBike extends StatefulWidget {
+  const BookBike({Key? key, required this.bike}) : super(key: key);
+
+  final Bike bike;
+
+  @override
+  _BookBikeState createState() => _BookBikeState();
+}
+
+class _BookBikeState extends State<BookBike> {
+  int _currentImage = 0;
+
+  List<Widget> buildPageIndicator() {
+    List<Widget> list = [];
+    for (var i = 0; i < widget.bike.image.length; i++) {
+      list.add(buildIndicator(i == _currentImage));
+    }
+    return list;
+  }
+
+  Widget buildIndicator(bool isActive) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 150),
+      margin: EdgeInsets.symmetric(horizontal: 6),
+      height: 8,
+      width: isActive ? 20 : 8,
+      decoration: BoxDecoration(
+        color: isActive ? Colors.black : Colors.grey[400],
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
 }
