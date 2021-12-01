@@ -20,13 +20,13 @@ Instructions
 
 - Registration page. Enter your name, email and Password, then Sign Up. 
 
--Profile Page. Displays name, email, option to sign out, add a bike feature and a confirmation page. If the user has not registered, a ‘verify email’ button will send the user an email at the address provided with a confirmation link. 
+- Profile Page. Displays name, email, option to sign out, add a bike feature and a confirmation page. If the user has not registered, a ‘verify email’ button will send the user an email at the address provided with a confirmation link. 
 
--Add Bike - Bike Details Page. Allows the user to add information about the bike they would like to register with the program. The top drop down lists the types of bikes (Road, Mountain, etc.). There is a prompt for frame size and another drop down to select from centimeters or inches. Then the user can add the combination for their bike lock. 
+- Add Bike - Bike Details Page. Allows the user to add information about the bike they would like to register with the program. The top drop down lists the types of bikes (Road, Mountain, etc.). There is a prompt for frame size and another drop down to select from centimeters or inches. Then the user can add the combination for their bike lock. 
 
--Add Bike - Image Upload Page. The user can take a photo of the bike with their camera or choose an existing photo from their phone photo gallery. The user will be prompted to crop the photo. A thumbnail appears after their selection. They may choose again or continue to the next step, location.
+- Add Bike - Image Upload Page. The user can take a photo of the bike with their camera or choose an existing photo from their phone photo gallery. The user will be prompted to crop the photo. A thumbnail appears after their selection. They may choose again or continue to the next step, location.
 
--Add Bike - Share Location Page. The user needs to allow their location to be shared, then hit ‘finish’. This concludes the process of adding a bike. At this point, the information that the user entered has been saved into the Firestore Database.
+- Add Bike - Share Location Page. The user needs to allow their location to be shared, then hit ‘finish’. This concludes the process of adding a bike. At this point, the information that the user entered has been saved into the Firestore Database.
 
 Acknowledgements
 
