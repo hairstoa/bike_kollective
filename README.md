@@ -2,9 +2,9 @@ The Bike Kollective
 CS 467 - Fall 2021
 
 Members:
-Melissa Clark
-Adriane Hairston
-Jaime Justo
+- Melissa Clark
+- Adriane Hairston
+- Jaime Justo
 
 
 Installation
